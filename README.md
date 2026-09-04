@@ -15,10 +15,10 @@ Por padrão conecta na API de produção: `https://api.minhasfotos.net`.
 
 ## Login
 
-Somente o admin fixo:
+Somente o admin fixo configurado no backend:
 
-- usuário: `admin`
-- senha: a definida em `PANEL_ADMIN_PASSWORD` no backend (padrão local: `REDACTED`)
+- usuário: `PANEL_ADMIN_USER` (padrão `admin`)
+- senha: `PANEL_ADMIN_PASSWORD` (**obrigatória** no `.env` do backend — sem fallback no código)
 
 Não usa conta do app mobile.
 
@@ -30,7 +30,8 @@ No servidor da API, configure:
 
 ```env
 PANEL_ADMIN_USER=admin
-PANEL_ADMIN_PASSWORD=REDACTED
+PANEL_ADMIN_PASSWORD=troque-por-senha-forte-do-painel
+JWT_SECRET=troque-por-um-segredo-forte
 ```
 
 Reinicie o backend depois de atualizar o código do painel.
