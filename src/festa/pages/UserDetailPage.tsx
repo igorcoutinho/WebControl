@@ -96,7 +96,8 @@ export function UserDetailPage() {
           {user.is_blocked ? 'Desbloquear acesso' : 'Bloquear acesso'}
         </button>
         <p className="muted small">
-          Para liberar o painel: `UPDATE users SET panel_access = 1 WHERE username = '{user.username}';`
+          Admin do painel é fixo (login WebControl). Este campo mostra se o usuário do app tem flag
+          `panel_access` no banco.
         </p>
       </section>
 

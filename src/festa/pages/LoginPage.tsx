@@ -1,12 +1,12 @@
 import { useState, type FormEvent } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../lib/auth';
 import { ApiError } from '../api/http';
 
 export function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('admin');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -28,14 +28,17 @@ export function LoginPage() {
   return (
     <div className="auth-page">
       <form className="card auth-card" onSubmit={onSubmit}>
-        <h1>Entrar no painel</h1>
-        <p className="muted">
-          Cadastro é livre. O acesso só libera com <code>panel_access = 1</code> no banco.
-        </p>
+        <h1>WebControl</h1>
+        <p className="muted">Acesso exclusivo do administrador.</p>
         {error ? <p className="error">{error}</p> : null}
         <label>
           Usuário
-          <input value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="username" required />
+          <input
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            autoComplete="username"
+            required
+          />
         </label>
         <label>
           Senha
@@ -50,9 +53,6 @@ export function LoginPage() {
         <button className="btn primary" disabled={loading} type="submit">
           {loading ? 'Entrando...' : 'Entrar'}
         </button>
-        <p className="muted center">
-          Não tem conta? <Link to="/register">Criar conta</Link>
-        </p>
       </form>
     </div>
   );

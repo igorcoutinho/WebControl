@@ -14,7 +14,6 @@ type AuthContextValue = {
   user: PanelUser | null;
   loading: boolean;
   login: (username: string, password: string) => Promise<void>;
-  register: (fullName: string, password: string, username?: string) => Promise<string>;
   logout: () => void;
   refresh: () => Promise<void>;
 };
@@ -52,20 +51,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(result.user);
   }, []);
 
-  const register = useCallback(async (fullName: string, password: string, username?: string) => {
-    const result = await panelApi.register({ fullName, password, username });
-    setToken(result.token);
-    return result.message;
-  }, []);
-
   const logout = useCallback(() => {
     setToken(null);
     setUser(null);
   }, []);
 
   const value = useMemo(
-    () => ({ user, loading, login, register, logout, refresh }),
-    [user, loading, login, register, logout, refresh],
+    () => ({ user, loading, login, logout, refresh }),
+    [user, loading, login, logout, refresh],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

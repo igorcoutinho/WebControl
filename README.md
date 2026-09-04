@@ -1,6 +1,6 @@
 # WebControl
 
-Painel web do **Jardim da Olívia** (React + Vite), dentro de `src/festa`.
+Painel web do **Jardim da Olívia** (React + Vite), em `src/festa`.
 
 ## Rodar
 
@@ -11,28 +11,26 @@ npm install
 npm run dev
 ```
 
-API local padrão: `http://127.0.0.1:4000` (`VITE_API_URL`).
+Por padrão conecta na API de produção: `https://api.minhasfotos.net`.
 
-## Acesso
+## Login
 
-1. Criar conta no painel (`/register`) — liberado.
-2. No MySQL, liberar o usuário:
+Somente o admin fixo:
 
-```sql
-UPDATE users SET panel_access = 1 WHERE username = 'seu.usuario';
-```
+- usuário: `admin`
+- senha: a definida em `PANEL_ADMIN_PASSWORD` no backend (padrão local: `REDACTED`)
 
-3. Entrar em `/login`.
-
-## Funcionalidades
-
-- Dashboard com totais e atividade recente
-- Lista/busca de usuários
-- Detalhe: bloquear/desbloquear, reset de senha, histórico
-- Histórico global
-- Layout responsivo (browser mobile)
+Não usa conta do app mobile.
 
 ## Backend
 
-Rotas em `OliviaBff` sob `/api/panel/*` (sem assinatura `APP_SECRET`).
-Flags: `users.panel_access`, `users.is_blocked`. Tabela: `activity_logs`.
+Rotas `/api/panel/*` (sem assinatura `APP_SECRET`).
+
+No servidor da API, configure:
+
+```env
+PANEL_ADMIN_USER=admin
+PANEL_ADMIN_PASSWORD=REDACTED
+```
+
+Reinicie o backend depois de atualizar o código do painel.

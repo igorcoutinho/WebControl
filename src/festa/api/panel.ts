@@ -21,12 +21,6 @@ export type ActivityItem = {
 };
 
 export const panelApi = {
-  register: (data: { fullName: string; password: string; username?: string }) =>
-    apiRequest<{ user: PanelUser; token: string; message: string }>('/api/panel/auth/register', {
-      method: 'POST',
-      data,
-    }),
-
   login: (data: { username: string; password: string }) =>
     apiRequest<{ user: PanelUser; token: string }>('/api/panel/auth/login', {
       method: 'POST',
