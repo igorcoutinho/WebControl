@@ -69,7 +69,7 @@ export function UsersPage() {
                   <p className="muted">@{user.username}</p>
                 </div>
                 <div className="badges">
-                  {user.panel_access ? <span className="badge ok">painel</span> : null}
+                  {!user.is_approved ? <span className="badge">aguardando</span> : null}
                   {user.is_blocked ? <span className="badge bad">bloqueado</span> : null}
                   <span className="muted small">{formatDate(user.created_at)}</span>
                 </div>

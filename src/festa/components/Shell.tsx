@@ -23,8 +23,10 @@ export function Shell() {
         <NavLink to="/" end>
           Início
         </NavLink>
+        <NavLink to="/pending">Usuários novos</NavLink>
         <NavLink to="/users">Usuários</NavLink>
         <NavLink to="/activity">Histórico</NavLink>
+        <NavLink to="/settings">Configurações</NavLink>
       </nav>
 
       <main className="main">

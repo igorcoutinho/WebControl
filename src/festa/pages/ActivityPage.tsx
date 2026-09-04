@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { panelApi, type ActivityItem } from '../api/panel';
 import { ApiError } from '../api/http';
-import { actionLabel, formatDate } from '../lib/format';
+import { actionLabel, activityDetail, formatDate } from '../lib/format';
 
 export function ActivityPage() {
   const [items, setItems] = useState<ActivityItem[]>([]);
@@ -39,14 +40,23 @@ export function ActivityPage() {
       {loading ? <p className="muted">Carregando...</p> : null}
       <div className="card">
         <ul className="list">
-          {items.map((item) => (
-            <li key={item.id}>
-              <strong>{actionLabel(item.action)}</strong>
-              <p className="muted">
-                {item.actor?.username ? `@${item.actor.username}` : 'sistema'} · {formatDate(item.createdAt)}
-              </p>
-            </li>
-          ))}
+          {items.map((item) => {
+            const detail = activityDetail(item);
+            return (
+              <li key={item.id}>
+                <strong>{actionLabel(item.action)}</strong>
+                {detail ? <p className="activity-detail">{detail}</p> : null}
+                <p className="muted">
+                  {item.actor?.id ? (
+                    <Link to={`/users/${item.actor.id}`}>@{item.actor.username}</Link>
+                  ) : (
+                    'sistema'
+                  )}{' '}
+                  · {formatDate(item.createdAt)}
+                </p>
+              </li>
+            );
+          })}
           {!loading && items.length === 0 ? <li className="muted">Nenhuma atividade.</li> : null}
         </ul>
       </div>

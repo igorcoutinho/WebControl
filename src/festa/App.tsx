@@ -4,8 +4,10 @@ import { Shell } from './components/Shell';
 import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { UsersPage } from './pages/UsersPage';
+import { PendingUsersPage } from './pages/PendingUsersPage';
 import { UserDetailPage } from './pages/UserDetailPage';
 import { ActivityPage } from './pages/ActivityPage';
+import { SettingsPage } from './pages/SettingsPage';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -42,9 +44,11 @@ export function FestaApp() {
           }
         >
           <Route index element={<DashboardPage />} />
+          <Route path="pending" element={<PendingUsersPage />} />
           <Route path="users" element={<UsersPage />} />
           <Route path="users/:id" element={<UserDetailPage />} />
           <Route path="activity" element={<ActivityPage />} />
+          <Route path="settings" element={<SettingsPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
