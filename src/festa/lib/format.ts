@@ -18,8 +18,17 @@ const LABELS: Record<string, string> = {
   reaction: 'Reagiu a uma foto',
 };
 
+const ERROR_ACTION_LABELS: Record<string, string> = {
+  login: 'Tentativa de login',
+  photo_post: 'Publicar foto',
+};
+
 export function actionLabel(action: string): string {
   return LABELS[action] || action;
+}
+
+export function errorActionLabel(action: string): string {
+  return ERROR_ACTION_LABELS[action] || LABELS[action] || action;
 }
 
 export function formatDate(value: string): string {

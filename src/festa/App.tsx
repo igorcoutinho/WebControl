@@ -7,6 +7,7 @@ import { UsersPage } from './pages/UsersPage';
 import { PendingUsersPage } from './pages/PendingUsersPage';
 import { UserDetailPage } from './pages/UserDetailPage';
 import { ActivityPage } from './pages/ActivityPage';
+import { ErrorsPage } from './pages/ErrorsPage';
 import { SettingsPage } from './pages/SettingsPage';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -48,6 +49,7 @@ export function FestaApp() {
           <Route path="users" element={<UsersPage />} />
           <Route path="users/:id" element={<UserDetailPage />} />
           <Route path="activity" element={<ActivityPage />} />
+          <Route path="errors" element={<ErrorsPage />} />
           <Route path="settings" element={<SettingsPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />

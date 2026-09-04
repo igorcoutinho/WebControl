@@ -21,6 +21,16 @@ export type ActivityItem = {
   actor: { id: string; full_name: string | null; username: string | null } | null;
 };
 
+export type ErrorLogItem = {
+  id: string;
+  action: string;
+  errorMessage: string;
+  errorStack: string | null;
+  meta: unknown;
+  createdAt: string;
+  user: { id: string | null; full_name: string | null; username: string | null } | null;
+};
+
 export const panelApi = {
   login: (data: { username: string; password: string }) =>
     apiRequest<{ user: PanelUser; token: string }>('/api/panel/auth/login', {
@@ -102,4 +112,18 @@ export const panelApi = {
       method: 'PATCH',
       data,
     }),
+
+  errors: (params: { userId?: string; action?: string; page?: number; pageSize?: number } = {}) => {
+    const q = new URLSearchParams();
+    if (params.userId) q.set('userId', params.userId);
+    if (params.action) q.set('action', params.action);
+    q.set('page', String(params.page ?? 1));
+    q.set('pageSize', String(params.pageSize ?? 30));
+    return apiRequest<{
+      items: ErrorLogItem[];
+      total: number;
+      page: number;
+      pageSize: number;
+    }>(`/api/panel/errors?${q.toString()}`);
+  },
 };

@@ -26,6 +26,7 @@ export function Shell() {
         <NavLink to="/pending">Usuários novos</NavLink>
         <NavLink to="/users">Usuários</NavLink>
         <NavLink to="/activity">Histórico</NavLink>
+        <NavLink to="/errors">Erros</NavLink>
         <NavLink to="/settings">Configurações</NavLink>
       </nav>
 

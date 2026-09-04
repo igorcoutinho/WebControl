@@ -207,6 +207,30 @@ input {
   white-space: pre-wrap;
   word-break: break-word;
 }
+.error-msg {
+  margin: 6px 0;
+  color: var(--danger);
+  word-break: break-word;
+}
+.error-stack {
+  margin: 8px 0 0;
+  padding: 10px;
+  border-radius: 10px;
+  background: #2b2033;
+  color: #f5eefc;
+  font-size: 0.75rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+select {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: white;
+  color: inherit;
+  font: inherit;
+}
 
 @media (min-width: 768px) {
   .shell { padding-bottom: 24px; }
